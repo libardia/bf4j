@@ -1,5 +1,6 @@
 package info.tonyl.bf4j.lang;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ public class Environment {
 	private static int pos = 0;
 	private static int boundLeft = 0;
 	private static int boundRight = 0;
+	private static InputStream input;
 
 	public static void moveLeft() {
 		pos--;

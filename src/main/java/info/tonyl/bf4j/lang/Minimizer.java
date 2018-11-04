@@ -27,7 +27,7 @@ public class Minimizer {
 		}
 
 		// Remove the "opening comment" if there is one
-		if (result.charAt(0) == CommandCharacters.BEGIN_LOOP) {
+		if (result.length() != 0 && result.charAt(0) == CommandCharacters.BEGIN_LOOP) {
 			int depth = 1;
 			int position = 1;
 			while (depth > 0 && position < result.length()) {

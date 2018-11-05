@@ -9,12 +9,11 @@ public class Options {
 	public static final String SCRIPT = "s";
 	public static final String SHOW_MINIMIZED = "m";
 	public static final String DEBUG = "D";
-	
+
 	public static void registerAndParse(String[] args) {
-		Opper.register(new String[] { Options.FILE, Options.FILE_LONG });
-		Opper.register(Options.INPUT, true);
-		Opper.register(Options.SCRIPT, true);
-		Opper.register(Options.SHOW_MINIMIZED, Options.DEBUG);
+		Opper.registerWithValue(FILE, FILE_LONG);
+		Opper.registerMultipleWithValue(SCRIPT, INPUT);
+		Opper.registerMultiple(SHOW_MINIMIZED, DEBUG);
 		Opper.parse(args);
 	}
 }

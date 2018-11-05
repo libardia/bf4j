@@ -6,6 +6,15 @@ import info.tonyl.opper.Opper;
 public class Bf4jApp {
 	public static void main(String[] args) {
 		Options.registerAndParse(args);
-		System.out.println(Opper.tempGetOptions());
+
+		for (String k : Opper.getAllSetOptions()) {
+			System.out.print("Option " + k);
+
+			if (Opper.hasValue(k)) {
+				System.out.println(" has value " + Opper.getValueOf(k));
+			} else {
+				System.out.println(" is set.");
+			}
+		}
 	}
 }

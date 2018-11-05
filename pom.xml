@@ -30,4 +30,12 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>info.tonyl</groupId>
+			<artifactId>opper</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+	</dependencies>
 </project>

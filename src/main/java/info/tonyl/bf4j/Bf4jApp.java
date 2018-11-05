@@ -11,10 +11,15 @@ public class Bf4jApp {
 			System.out.print("Option " + k);
 
 			if (Opper.hasValue(k)) {
-				System.out.println(" has value " + Opper.getValueOf(k));
+				System.out.println(" has value \"" + Opper.getValueOf(k) + "\"");
 			} else {
 				System.out.println(" is set.");
 			}
+		}
+
+		System.out.println("\nNameless values:");
+		for (String s : Opper.getNamelessValues()) {
+			System.out.println(s);
 		}
 	}
 }

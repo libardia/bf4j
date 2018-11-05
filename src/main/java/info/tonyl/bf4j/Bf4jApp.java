@@ -1,25 +1,32 @@
 package info.tonyl.bf4j;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import info.tonyl.bf4j.lang.BfEngine;
+import info.tonyl.bf4j.lang.Minimizer;
 import info.tonyl.bf4j.options.Options;
 import info.tonyl.opper.Opper;
 
 public class Bf4jApp {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Options.registerAndParse(args);
 
-		for (String k : Opper.getAllSetOptions()) {
-			System.out.print("Option " + k);
+		String script = "";
+		String input = Opper.getValueOf(Options.INPUT);
 
-			if (Opper.hasValue(k)) {
-				System.out.println(" has value \"" + Opper.getValueOf(k) + "\"");
-			} else {
-				System.out.println(" is set.");
-			}
+		if (Opper.isSet(Options.FILE)) {
+			byte[] bytes = Files.readAllBytes(Paths.get(Opper.getValueOf(Options.FILE)));
+			script = new String(bytes);
+		} else if (Opper.isSet(Options.SCRIPT)) {
+			script = Opper.getValueOf(Options.SCRIPT);
+		} else {
+			script = Opper.getNamelessValues()[0];
 		}
 
-		System.out.println("\nNameless values:");
-		for (String s : Opper.getNamelessValues()) {
-			System.out.println(s);
-		}
+		script = Minimizer.minimize(script);
+
+		BfEngine.execute(script, input);
 	}
 }
